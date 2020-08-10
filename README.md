@@ -1,3 +1,3 @@
 # Coding tasks 
 
-Excercies from https://app.codility.com/programmers/lessons
+Exercise from https://app.codility.com/programmers/lessons
