@@ -38,12 +38,12 @@ public class BinaryGap2Test {
         assertEquals(0, result);
     }
 
-    /*
+
     @Test
     public void testWithMultipleGaps() {
         int result = binaryGap2.solution(0b101001);
         assertEquals(2, result);
-    }*/
+    }
 
     @Test
     public void testMoveToLeft() {

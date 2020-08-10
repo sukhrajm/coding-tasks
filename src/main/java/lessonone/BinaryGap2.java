@@ -13,31 +13,38 @@ public class BinaryGap2 {
         //while(i <= 1) {
         int numberOfZeros = 0;
         boolean hasSeenAOne = false;
+        int maxGap = 0;
+
         while(true) {
             if (i <= 1 ) {
-                return numberOfZeros;
+                return maxGap;
             }
 
             if (i==0) {
                 return 0;
             }
 
-            //divide by zero, look at the right most digit
+            //get the remainder after halving i.e look at the right most digit
             int remainder = i % 2;
             if (remainder == 0) {
                 if (hasSeenAOne) {
                     numberOfZeros++;
+                    if (numberOfZeros > maxGap) {
+                        maxGap = numberOfZeros;
+                    }
                 }
 
-                //return 1;
-                //return numberOfZeros;
             } else {
+                if (hasSeenAOne) {
+                    //if already seen one
+                    if (numberOfZeros > maxGap) {
+                        maxGap = numberOfZeros;
+                    }
+                    numberOfZeros = 0;
+                }
                 hasSeenAOne = true;
             }
-
-            //numberOfZeros++;
             i = i >> 1;
-
         }
     }
 }
