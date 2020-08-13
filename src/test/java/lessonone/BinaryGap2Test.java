@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BinaryGap2Test {
 
-    private static BinaryGap2 binaryGap2;
+    static BinaryGap2 binaryGap2;
 
     @BeforeClass
     public static void setup() {
