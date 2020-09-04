@@ -8,6 +8,6 @@ package lessontwo;
 public class CyclicRotation {
 
     public int[] solution(int[] input, int numberOfCycles) {
-        return null;
+        return input;
     }
 }
