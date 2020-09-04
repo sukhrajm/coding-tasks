@@ -41,4 +41,18 @@ public class CyclicRotationTest {
         int[] expected = new int[]{4,2};
         assertArrayEquals(expected, result);
     }
+
+    @Test
+    public void testThreeItems_WithOneCycle() {
+        //given
+        int input[] = new int[]{2, 4, 7};
+        int numberOfTurns = 1;
+
+        //when
+        int[] result = cyclicRotation.solution(input, numberOfTurns);
+
+        //then
+        int[] expected = new int[]{7, 2, 4};
+        assertArrayEquals(expected, result);
+    }
 }
