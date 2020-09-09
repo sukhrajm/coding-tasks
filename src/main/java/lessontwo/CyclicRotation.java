@@ -15,7 +15,7 @@ public class CyclicRotation {
             input[0] = input[1];
             input[1] = firstItem;
         }
-        else if (input.length == 1) {
+        else if (input.length == 1 || input.length == numberOfCycles) {
             return input;
         }
         else {
