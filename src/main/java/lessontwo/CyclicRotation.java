@@ -7,27 +7,26 @@ package lessontwo;
  */
 public class CyclicRotation {
 
-    public int[] solution(int[] input, int numberOfCycles) {
+    public int[] solution(int[] input, int numberOfRotations) {
 
-        if (input.length != 1 && input.length != numberOfCycles) {
+        int inputLength = input.length;
+        if (inputLength != 1 && inputLength != numberOfRotations) {
 
-            int[] transformedInput = new int[input.length];
-            int indexOfTransformedArray = 0;
-            int currentCycle = 0;
+            int countOfRotations = 0;
 
-            while(currentCycle < numberOfCycles) {
-                for (int i = 0; i < input.length - 1; i++) {
-                    transformedInput[indexOfTransformedArray + 1] = input[i];
-                    indexOfTransformedArray++;
+            while(countOfRotations < numberOfRotations) {
 
-                    if (indexOfTransformedArray == input.length - 1) {
-                        transformedInput[0] = input[input.length - 1];
+                int lastItem = input[inputLength-1];
+
+                for (int i = inputLength - 2; i >= 0; i--) {
+                    int currentItem = input[i];
+                    input[i + 1] = currentItem;
+
+                    if (i == 0) {
+                        input[0] = lastItem;
                     }
                 }
-                input = transformedInput;
-                transformedInput = new int[input.length];
-                currentCycle++;
-                indexOfTransformedArray = 0;
+                countOfRotations++;
             }
         }
         return input;
