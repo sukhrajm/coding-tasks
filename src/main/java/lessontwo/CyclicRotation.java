@@ -9,16 +9,8 @@ public class CyclicRotation {
 
     public int[] solution(int[] input, int numberOfCycles) {
 
-        if (input.length == 2 && numberOfCycles == 1) {
-            //then it is a swap
-            int firstItem = input[0];
-            input[0] = input[1];
-            input[1] = firstItem;
-        }
-        else if (input.length == 1 || input.length == numberOfCycles) {
-            return input;
-        }
-        else {
+        if (input.length != 1 && input.length != numberOfCycles) {
+
             int[] transformedInput = new int[input.length];
             int indexOfTransformedArray = 0;
             int currentCycle = 0;
