@@ -10,6 +10,11 @@ public class CyclicRotation {
     public int[] solution(int[] input, int numberOfRotations) {
 
         int inputLength = input.length;
+
+        if (inputLength == 0) {
+            return input;
+        }
+
         if (inputLength != 1 && inputLength != numberOfRotations) {
 
             int countOfRotations = 0;
