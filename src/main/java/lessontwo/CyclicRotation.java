@@ -19,19 +19,21 @@ public class CyclicRotation {
 
             int countOfRotations = 0;
 
-            while(countOfRotations < numberOfRotations) {
+            int lastItem = input[inputLength-1];
 
-                int lastItem = input[inputLength-1];
+            for (int i = inputLength - 2; i >= 0; i--) {
+                int currentItem = input[i];
+                input[i + 1] = currentItem;
 
-                for (int i = inputLength - 2; i >= 0; i--) {
-                    int currentItem = input[i];
-                    input[i + 1] = currentItem;
-
-                    if (i == 0) {
-                        input[0] = lastItem;
-                    }
+                if (i == 0) {
+                    input[0] = lastItem;
                 }
-                countOfRotations++;
+            }
+
+            countOfRotations++;
+
+            if (countOfRotations != numberOfRotations) {
+                return solution(input, countOfRotations);
             }
         }
         return input;
