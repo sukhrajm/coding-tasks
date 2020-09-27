@@ -43,7 +43,20 @@ public class CyclicRotationTest2 {
         assertArrayEquals(input, result);
     }
 
+    @Test
+    public void testTwoItemsInArray_OneRotation() {
+        //given
+        int[] input = new int[]{2,4};
+
+        //when
+        int[] result = rotateArray(input, 1);
+
+        //then
+        assertArrayEquals(new int[]{4,2}, result);
+
+    }
+
     private int[] rotateArray(int[] array, int cycles) {
-        return null;
+        return array;
     }
 }
