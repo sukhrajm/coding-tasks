@@ -69,19 +69,40 @@ public class CyclicRotationTest2 {
 
     }
 
+    @Test
+    public void testThreeItemsInArray_TwoRotations() {
+        //given
+        int[] input = new int[]{2,4,1};
+
+        //when
+        int[] result = rotateArray(input, 1);
+
+        //then
+        assertArrayEquals(new int[]{4,1,2}, result);
+
+    }
+
     private int[] rotateArray(int[] array, int cycles) {
-        int[] itemsToMove = new int[cycles];
-        int counter = itemsToMove.length - 1;
+        int[] itemsToMove = new int[]{};
+        int counter = 0;
 
         for (int i=array.length-1; i>0; i--) {
-            itemsToMove[counter] = array[i];
-            array[i] = array[i-cycles];
+            if (itemsToMove.length < cycles) { //sort this condition out
+                if (itemsToMove.length == 0) {
+                    itemsToMove = new int[cycles];
+                    counter = itemsToMove.length - 1;
+                }
+                itemsToMove[counter] = array[i];
+                if (counter != 0) {
+                    counter--;
+                }
+            }
 
+            array[i] = array[i-cycles];
 
             if (i == cycles){
                 array[i-1] = itemsToMove[counter];
             }
-            counter--;
         }
 
         return array;
