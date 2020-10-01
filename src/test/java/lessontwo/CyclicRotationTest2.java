@@ -9,6 +9,9 @@ public class CyclicRotationTest2 {
     /**
      * notes
      *
+     *
+     * 2 + 2 > 3 -> 4 - 3 = 1
+     * 3 + 2 > 3 -> 5 - 3 = 2
      * [2,6,1,3] -> 1 cycle [3,2,6,1]
      * each item move once
      * moves 1 position
@@ -27,7 +30,6 @@ public class CyclicRotationTest2 {
      *  take the cycle number - array length = x
      *  get the last x number of items and move to the beginning
      *
-     *   []
      *
      */
 
@@ -75,7 +77,7 @@ public class CyclicRotationTest2 {
         int[] input = new int[]{2,4,1};
 
         //when
-        int[] result = rotateArray(input, 1);
+        int[] result = rotateArray(input, 2);
 
         //then
         assertArrayEquals(new int[]{4,1,2}, result);
@@ -83,28 +85,47 @@ public class CyclicRotationTest2 {
     }
 
     private int[] rotateArray(int[] array, int cycles) {
-        int[] itemsToMove = new int[]{};
-        int counter = 0;
+        int[] itemsToMove = new int[cycles];
+        int counter = itemsToMove.length - 1;
+        int countOfItemsAdded = 0;
 
-        for (int i=array.length-1; i>0; i--) {
-            if (itemsToMove.length < cycles) { //sort this condition out
-                if (itemsToMove.length == 0) {
-                    itemsToMove = new int[cycles];
-                    counter = itemsToMove.length - 1;
-                }
+        int lastIndex = array.length-1;
+
+        int offsetFromTheBackToTake = lastIndex - cycles;
+
+        for (int i=lastIndex; i > 0; i--) {
+
+            if (countOfItemsAdded != cycles) {
                 itemsToMove[counter] = array[i];
+                countOfItemsAdded++;
                 if (counter != 0) {
                     counter--;
                 }
-            }
 
-            array[i] = array[i-cycles];
+            }
+            int newPosition = findNewPosition(i,cycles,array.length-1);
+            if (newPosition > offsetFromTheBackToTake) {
+                array[newPosition] = array[i];
+            }
 
             if (i == cycles){
+                array[i] = array[i-1];
                 array[i-1] = itemsToMove[counter];
             }
+
         }
 
         return array;
+    }
+
+
+    private int findNewPosition(int currentPosition, int cycles, int lastIndexNumber) {
+
+        int newPosition = currentPosition + cycles;
+        if (newPosition > lastIndexNumber) {
+            newPosition = newPosition - lastIndexNumber - 1;
+        }
+        return newPosition;
+
     }
 }
