@@ -83,10 +83,6 @@ public class CyclicRotationTest2 {
                 array[i + cycles] = array[i];
             }
 
-            if (i <= indexCounter) {
-                array[itemsToMove.length - 1] = itemsToMove[i];
-            }
-
             if (i <= itemsToMove.length - 1) {
                 array[i] = itemsToMove[i];
             }
