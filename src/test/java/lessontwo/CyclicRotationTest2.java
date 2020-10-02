@@ -30,7 +30,9 @@ public class CyclicRotationTest2 {
      *  take the cycle number - array length = x
      *  get the last x number of items and move to the beginning
      *
-     *
+     * split array in half
+     * move all 1 up till get to the end
+     * add the itemstomove
      */
 
     @Test
@@ -86,33 +88,43 @@ public class CyclicRotationTest2 {
 
     private int[] rotateArray(int[] array, int cycles) {
         int[] itemsToMove = new int[cycles];
-        int counter = itemsToMove.length - 1;
-        int countOfItemsAdded = 0;
+        int indexCounter = itemsToMove.length - 1;
 
         int lastIndex = array.length-1;
 
-        int offsetFromTheBackToTake = lastIndex - cycles;
+        //[1,6,2,5] -> 2 cycles [2,5,1,6]
+        //     * [7,8,1,2,4,5] -> 2 cycles [4,5,7,8,1,2]
+        //     *
+        //[4,5]
 
-        for (int i=lastIndex; i > 0; i--) {
+//     * split array in half
+//     * move all 1 up till get to the end
+//     * add the itemstomove
 
-            if (countOfItemsAdded != cycles) {
-                itemsToMove[counter] = array[i];
-                countOfItemsAdded++;
-                if (counter != 0) {
-                    counter--;
-                }
+        //2 -1 = 1
+        int indexToStartMovingUp = lastIndex - cycles;
 
+        int cycleCounter = cycles;
+
+        if(cycles == 1) {
+            itemsToMove[0] = array[lastIndex];
+        }
+
+
+        for (int i=lastIndex; i >= 0; i--) {
+
+            if (cycleCounter < cycles) {
+                itemsToMove[indexCounter] = array[i];
+                indexCounter--;
             }
-            int newPosition = findNewPosition(i,cycles,array.length-1);
-            if (newPosition > offsetFromTheBackToTake) {
-                array[newPosition] = array[i];
+
+            if (i <= indexToStartMovingUp) {
+                array[i + cycles] = array[i];
             }
 
-            if (i == cycles){
-                array[i] = array[i-1];
-                array[i-1] = itemsToMove[counter];
+            if (i <= indexCounter) {
+                array[itemsToMove.length - 1] = itemsToMove[i];
             }
-
         }
 
         return array;
