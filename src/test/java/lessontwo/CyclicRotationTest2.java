@@ -57,19 +57,6 @@ public class CyclicRotationTest2 {
 
     }
 
-    @Test
-    public void testFiveItemsInArray_ThreeRotations() {
-        //given
-        int[] input = new int[]{2,4,1,6,3};
-
-        //when
-        int[] result = rotateArray(input, 2);
-
-        //then
-        assertArrayEquals(new int[]{1,6,3,2,4}, result);
-
-    }
-
     private int[] rotateArray(int[] array, int cycles) {
         int[] itemsToMove = new int[cycles];
         int indexCounter = itemsToMove.length - 1;
