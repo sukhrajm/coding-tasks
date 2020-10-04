@@ -45,6 +45,18 @@ public class CyclicRotationTest2 {
     }
 
     @Test
+    public void testNumberOfRotationsIsSameSizeArray() {
+        //given
+        int[] input = new int[]{1,2,3,4};
+
+        //when
+        int[] result = rotateArray(input, 4);
+
+        //then
+        assertArrayEquals(new int[]{1,2,3,4}, result);
+    }
+
+    @Test
     public void testThreeItemsInArray_TwoRotations() {
         //given
         int[] input = new int[]{2,4,1};
@@ -58,6 +70,11 @@ public class CyclicRotationTest2 {
     }
 
     private int[] rotateArray(int[] array, int cycles) {
+
+        if (array.length == cycles) {
+            return array;
+        }
+
         int[] itemsToMove = new int[cycles];
         int indexCounter = itemsToMove.length - 1;
 
