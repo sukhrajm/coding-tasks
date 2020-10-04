@@ -76,24 +76,22 @@ public class CyclicRotationTest2 {
         }
 
         int[] itemsToMove = new int[cycles];
-        int indexCounter = itemsToMove.length - 1;
+        int itemsToMoveIndexCounter = itemsToMove.length - 1;
+        int countOfItemsToMove = 0;
 
-        int lastIndex = array.length-1;
-
-        int indexToStartMovingUp = lastIndex - cycles;
-
-        int cycleCounter = 0;
+        int lastIndexOfInputArray = array.length-1;
+        int indexToStartMovingUp = lastIndexOfInputArray - cycles;
 
         if (cycles == 1) {
-            itemsToMove[0] = array[lastIndex];
+            itemsToMove[0] = array[lastIndexOfInputArray];
         }
 
-        for (int i=lastIndex; i >= 0; i--) {
+        for (int i=lastIndexOfInputArray; i >= 0; i--) {
 
-            if (cycleCounter != cycles) {
-                itemsToMove[indexCounter] = array[i];
-                indexCounter--;
-                cycleCounter++;
+            if (countOfItemsToMove != cycles) {
+                itemsToMove[itemsToMoveIndexCounter] = array[i];
+                itemsToMoveIndexCounter--;
+                countOfItemsToMove++;
             }
 
             if (i <= indexToStartMovingUp) {
