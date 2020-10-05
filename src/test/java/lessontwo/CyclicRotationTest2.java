@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 
+/**
+ * Solution for exercise: https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
+ *
+ * @author sukhraj rattan
+ */
 public class CyclicRotationTest2 {
 
     @Test
