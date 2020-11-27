@@ -25,7 +25,7 @@ public class CommonElementsTest {
 
     @Test
     public void findCommon_withVeryLargeArraysOfSameSize(){
-        int[] input1 = new int[]{2,6,7,8,9,12,13,16,19,21,24,26,29};
+        int[] input1 = new int[]{2,6,7,8,9,12,13,16,17,21,24,26,34};
         int[] input2 = new int[]{6,8,9,11,13,16,19,22,23,24,31,34};
 
         int result = commonElements.find(input1, input2);
@@ -40,6 +40,15 @@ public class CommonElementsTest {
 
         int result = commonElements.find(input1, input2);
         assertEquals(7, result);
+    }
+
+    @Test
+    public void findCommon_withSecondArraySmaller(){
+        int[] input1 = new int[]{6,8,9,11,13,16,19,22,23,24,31,34};
+        int[] input2 = new int[]{2,6,7,8,9,12,13,16,19,21,30};
+
+        int result = commonElements.find(input1, input2);
+        assertEquals(6, result);
     }
 }
 

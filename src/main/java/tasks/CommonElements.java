@@ -17,12 +17,17 @@ public class CommonElements {
         int indexOfArrayOne = 0;
 
         int indexOfArrayTwo = 0;
+        int itemInOtherArray = 0;
 
-        while(indexOfArrayOne != input1.length) {
+        while(indexOfArrayOne != input1.length && indexOfArrayTwo != input2.length) {
 
             int  itemInThisArray = input1[indexOfArrayOne];
 
-            int itemInOtherArray = input2[indexOfArrayTwo];
+//            try {
+                itemInOtherArray = input2[indexOfArrayTwo];
+//            }catch(ArrayIndexOutOfBoundsException e) {
+//                e.printStackTrace();
+//            }
 
             if (itemInThisArray < itemInOtherArray) {
                 //then it cant be in the other array, so move on
