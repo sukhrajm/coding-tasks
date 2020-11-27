@@ -12,19 +12,15 @@ public class CommonElements {
 
         //input2 [6,8,9,11,13,16,19,22,23,24,31,34]
 
-        //iterate the biggest array
-        int largestLength = input1.length > input1.length ? input1.length : input2.length;
-
         int numberOfCommonItems = 0;
 
         int indexOfArrayOne = 0;
 
         int indexOfArrayTwo = 0;
 
+        while(indexOfArrayOne != input1.length) {
 
-        while(indexOfArrayOne < largestLength) {
-
-            int itemInThisArray = input1[indexOfArrayOne];
+            int  itemInThisArray = input1[indexOfArrayOne];
 
             int itemInOtherArray = input2[indexOfArrayTwo];
 
@@ -32,6 +28,7 @@ public class CommonElements {
                 //then it cant be in the other array, so move on
                 indexOfArrayOne++;
             } else if (itemInThisArray == itemInOtherArray) {
+                //then move both counters up
                 numberOfCommonItems++;
                 indexOfArrayOne++;
                 indexOfArrayTwo++;
