@@ -29,6 +29,32 @@ public class OddOccurrencesInArrayTest {
 
     }
 
+    @Test
+    public void testWithTwoPairs() {
+        //given
+        int[] array = new int[]{2,2,4,4,3};
+
+        //when
+        int result = findOddOccurrence(array);
+
+        //then
+        assertEquals(3, result);
+
+    }
+
+    @Test
+    public void testWithTwoPairsUnordered() {
+        //given
+        int[] array = new int[]{4,2,3,2,4};
+
+        //when
+        int result = findOddOccurrence(array);
+
+        //then
+        assertEquals(3, result);
+
+    }
+
     private int findOddOccurrence(int[] array) {
         Map<Integer, Integer> unpaired = new HashMap<>();
 
