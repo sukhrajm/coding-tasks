@@ -1,16 +1,32 @@
-
 plugins {
-    id 'java'
-    id "me.champeau.gradle.jmh" version "0.5.2"
+    id "me.champeau.gradle.jmh" version "0.5.0"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+apply plugin: "me.champeau.gradle.jmh"
 
-repositories {
-    mavenCentral()
+jmh {
+//    duplicateClassesStrategy = 'exclude'
+
+    if(file("$rootDir/libasyncProfiler.so").exists()) {
+        // advanced profiler, requires native library from
+        // https://github.com/jvm-profiling-tools/async-profiler
+        // on Tesco macs you have to allow the file to run:
+        // xattr -d com.apple.quarantine libasyncProfiler.so ;
+        profilers = ["async:output=flamegraph,tree;libPath=$rootDir/libasyncProfiler.so".toString()]
+    } else {
+        // very basic profiler
+        profilers = ['stack'] // , 'gc'] - gc profilers might be too much for now
+    }
 }
 
 dependencies {
+    //implementation project(":")
+    //jmh 'commons-io:commons-io:2.8.0'
+    // jmh 'org.openjdk.jmh:jmh-core:0.9'
+    // jmh 'org.openjdk.jmh:jmh-generator-annprocess:0.9'
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+repositories {
+    mavenCentral()
 }

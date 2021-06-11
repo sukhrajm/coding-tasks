@@ -30,20 +30,20 @@ public class OddOccurrencesInArrayTest {
     }
 
     private int findOddOccurrence(int[] array) {
-        List<Integer> unpaired = new ArrayList<>();
+        Map<Integer, Integer> unpaired = new HashMap<>();
 
         for (int i=0; i<array.length; i++) {
             int current = array[i];
-            if (unpaired.contains(current)) {
+            if (unpaired.get(current) != null) {
                 //if already in the list, then it's paired so remove
-                unpaired.remove((Integer)current);
+                unpaired.remove(current);
 
             } else {
-                unpaired.add(current);
+                unpaired.put(current, current);
             }
         }
 
-        return unpaired.get(0);
-
+        Map.Entry<Integer, Integer> entry = unpaired.entrySet().iterator().next();
+        return entry.getKey();
     }
 }
