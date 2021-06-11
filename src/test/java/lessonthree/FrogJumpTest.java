@@ -22,7 +22,18 @@ public class FrogJumpTest {
     }
 
     @Test
-    public void testOneJump() {
+    public void testNoJumpNeeded() {
+        int x = 10;
+        int y = 10;
+        int d = 10;
+
+        int result = solution(x,y,d);
+
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void testOneJump_YIsEqual() {
         int x = 10;
         int y = 20;
         int d = 10;
@@ -30,6 +41,17 @@ public class FrogJumpTest {
         int result = solution(x, y, d);
 
         assertEquals(1, result);
+    }
+
+    @Test
+    public void testTwoJumps_YIsBigger() {
+        int x = 10;
+        int y = 25;
+        int d = 10;
+
+        int result = solution(x, y, d);
+
+        assertEquals(2, result);
     }
 
 }
