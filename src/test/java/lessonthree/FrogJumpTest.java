@@ -11,11 +11,14 @@ public class FrogJumpTest {
 
     public int solution(int x, int y, int d) {
 
-        int jumps = 0;
+        int end = y - x;
 
-        while(x < y) {
-            x = x + d;
-            jumps++;
+        int remainder = end % d;
+
+        int jumps = end / d;
+
+        if (remainder == x) {
+            jumps = jumps + 1;
         }
 
         return jumps;
@@ -45,13 +48,25 @@ public class FrogJumpTest {
 
     @Test
     public void testTwoJumps_YIsBigger() {
-        int x = 10;
-        int y = 25;
+        int x = 5;
+        int y = 30;
         int d = 10;
 
         int result = solution(x, y, d);
 
-        assertEquals(2, result);
+
+        assertEquals(3, result);
     }
 
+    @Test
+    public void testJumps_YIsBigger() {
+        int x = 10;
+        int y = 85;
+        int d = 30;
+
+        int result = solution(x, y, d);
+
+
+        assertEquals(3, result);
+    }
 }
