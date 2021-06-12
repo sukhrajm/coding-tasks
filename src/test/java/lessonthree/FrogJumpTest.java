@@ -11,17 +11,12 @@ public class FrogJumpTest {
 
     public int solution(int x, int y, int d) {
 
-        int end = y - x;
-
-        int remainder = end % d;
-
-        int jumps = end / d;
-
-        if (remainder == x) {
-            jumps = jumps + 1;
+        //If (y - x) % d = 0 then division means we get whole number of jumps
+        if ((y - x) % d == 0) {
+            return (y - x) / d;
         }
-
-        return jumps;
+        //If (y - x) % d != 0, then the division needs 1 extra jump so add 1
+        return ((y - x) / d) + 1;
     }
 
     @Test
@@ -42,7 +37,6 @@ public class FrogJumpTest {
         int d = 10;
 
         int result = solution(x, y, d);
-
         assertEquals(1, result);
     }
 
@@ -53,8 +47,6 @@ public class FrogJumpTest {
         int d = 10;
 
         int result = solution(x, y, d);
-
-
         assertEquals(3, result);
     }
 
@@ -65,8 +57,6 @@ public class FrogJumpTest {
         int d = 30;
 
         int result = solution(x, y, d);
-
-
         assertEquals(3, result);
     }
 }
