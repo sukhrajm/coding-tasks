@@ -16,7 +16,22 @@ public class TapeEquilibriumTest {
             return A[1] - A[0];
         }
 
-        return -1;
+        int result = 0;
+        int sumOfAllArray = A[0];
+
+        for (int i=1; i<A.length; i++) {
+            sumOfAllArray = sumOfAllArray + A[i];
+        }
+
+        for (int i=A.length-1; i>0; i--) {
+            int remainingTotal = sumOfAllArray - A[i];
+            sumOfAllArray = sumOfAllArray - A[i];
+            if (remainingTotal == sumOfAllArray) {
+               return sumOfAllArray + 1;
+            }
+        }
+
+        return result;
     }
 
     @Test
@@ -36,10 +51,6 @@ public class TapeEquilibriumTest {
     @Test
     public void testWithThreeElementsInArrayOneSplit() {
         int[] a = new int[]{3, 1, 9};
-
-        //4,9 = 5
-        //3, 10 = 7
-
         int result = solution(a);
         assertEquals(5, result);
     }
