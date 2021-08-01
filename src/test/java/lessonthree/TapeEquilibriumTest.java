@@ -16,22 +16,31 @@ public class TapeEquilibriumTest {
             return A[1] - A[0];
         }
 
-        int result = 0;
         int sumOfAllArray = A[0];
 
         for (int i=1; i<A.length; i++) {
             sumOfAllArray = sumOfAllArray + A[i];
         }
 
-        for (int i=A.length-1; i>0; i--) {
-            int remainingTotal = sumOfAllArray - A[i];
-            sumOfAllArray = sumOfAllArray - A[i];
-            if (remainingTotal == sumOfAllArray) {
-               return sumOfAllArray + 1;
+        int sumLeftSide = 0;
+        int minimumDifference = Integer.MAX_VALUE;
+
+        for (int i=0; i<A.length; i++) {
+
+            int currentItem = A[i];
+
+            sumLeftSide = sumLeftSide + currentItem;
+
+            sumOfAllArray = sumOfAllArray - currentItem;
+
+            int difference = Math.abs(sumOfAllArray - sumLeftSide);
+            if (difference < minimumDifference) {
+                minimumDifference = difference;
             }
+
         }
 
-        return result;
+        return minimumDifference;
     }
 
     @Test
@@ -53,5 +62,12 @@ public class TapeEquilibriumTest {
         int[] a = new int[]{3, 1, 9};
         int result = solution(a);
         assertEquals(5, result);
+    }
+
+    @Test
+    public void testWithFourElementsInArrayOneSplit() {
+        int[] a = new int[]{3, 1, 2, 4, 3};
+        int result = solution(a);
+        assertEquals(1, result);
     }
 }
