@@ -2,6 +2,8 @@ package lessonfour;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -36,10 +38,15 @@ public class FrogRiverOneTest {
         assertEquals(2, result);
     }
 
+    @Test
+    public void testJumpsNotInOrder() {
+        int[] a = new int[]{3,1,2};
+        int input = 3;
+        int result = solution(input, a);
+        assertEquals(2, result);
+    }
+
     int solution(int X, int[] A) {
-        if (A[0] == X) {
-            return 0;
-        }
         int earliestJump = -1;
         Set<Integer> values = new TreeSet<>();
 
@@ -50,6 +57,7 @@ public class FrogRiverOneTest {
 
             if (values.size() == X) {
                 earliestJump = i;
+                break;
             }
         }
 
