@@ -2,6 +2,9 @@ package lessonfour;
 
 import org.junit.Test;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -33,11 +36,24 @@ public class FrogRiverOneTest {
         assertEquals(2, result);
     }
 
-    int solution(int x, int[] a) {
-        if (a[0] == x) {
+    int solution(int X, int[] A) {
+        if (A[0] == X) {
             return 0;
         }
-        return -1;
+        int earliestJump = -1;
+        Set<Integer> values = new TreeSet<>();
+
+        for (int i=0; i<A.length; i++) {
+            if (A[i] <= X) {
+                values.add(A[i]);
+            }
+
+            if (values.size() == X) {
+                earliestJump = i;
+            }
+        }
+
+        return earliestJump;
     }
 
 
