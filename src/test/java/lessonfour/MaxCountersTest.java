@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * https://app.codility.com/programmers/lessons/4-counting_elements/max_counters/
  */
-public class MaxCounters {
+public class MaxCountersTest {
 
   private int[] solution(int N, int[] A) {
 
