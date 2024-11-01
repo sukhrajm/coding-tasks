@@ -9,6 +9,68 @@ import org.junit.Test;
  */
 public class MergeSortedArray88 {
 
+  public void merge3(int[] nums1, int m, int[] nums2, int n) {
+    int num1Counter = m-1;
+    int num2Counter = n-1;
+    int fillCounter = m + n - 1;
+
+    while(num1Counter >= 0 && num2Counter >= 0) {
+
+      if (nums1[num1Counter] > nums2[num2Counter]) {
+        nums1[fillCounter] = nums1[num1Counter];
+        fillCounter--;
+        num1Counter--;
+      } else {
+        nums1[fillCounter] = nums2[num2Counter];
+        fillCounter--;
+        num2Counter--;
+      }
+    }
+
+    while (num2Counter >=0 ) {
+      nums1[fillCounter] = nums2[num2Counter];
+      num2Counter--;
+      fillCounter--;
+    }
+
+  }
+
+  @Test
+  public void test1() {
+    int[] nums1 = new int[]{4,5,6,0,0,0};
+    int m = 3;
+    int[] nums2 = new int[]{1,2,3};
+    int n = 3;
+    merge3(nums1, m, nums2, n);
+    assertArrayEquals(new int[]{1,2,3,4,5,6}, nums1);
+  }
+
+  @Test
+  public void test2() {
+
+    int[] nums1 = new int[]{1,2,3,0,0,0};
+    int[] nums2 = new int[]{2,5,6};
+    merge3(nums1, 3, nums2, 3);
+    assertArrayEquals(new int[]{1,2,2,3,5,6}, nums1);
+  }
+
+  @Test
+  public void test3() {
+    int[] nums1 = new int[]{1};
+    int[] nums2 = new int[]{};
+    merge3(nums1, 1, nums2, 0);
+    assertArrayEquals(new int[]{1}, nums1);
+  }
+
+  @Test
+  public void test4() {
+    //nums1 = [0], m = 0, nums2 = [1], n = 1
+    int[] nums1 = new int[]{0};
+    int[] nums2 = new int[]{1};
+    merge3(nums1, 0, nums2, 1);
+    assertArrayEquals(new int[]{1}, nums1);
+  }
+
   public void merge2(int[] nums1, int m, int[] nums2, int n) {
     if (n==0) {
       return;
@@ -38,42 +100,6 @@ public class MergeSortedArray88 {
       }
     }
 
-  }
-
-  @Test
-  public void test() {
-    int[] nums1 = new int[]{4,5,6,0,0,0};
-    int m = 3;
-    int[] nums2 = new int[]{1,2,3};
-    int n = 3;
-    merge2(nums1, m, nums2, n);
-    assertArrayEquals(new int[]{1,2,3,4,5,6}, nums1);
-  }
-
-  @Test
-  public void testWithFullArrays() {
-
-    int[] nums1 = new int[]{1,2,3,0,0,0};
-    int[] nums2 = new int[]{2,5,6};
-    merge2(nums1, 3, nums2, 3);
-    assertArrayEquals(new int[]{1,2,2,3,5,6}, nums1);
-  }
-
-  @Test
-  public void testWithOneFullArray() {
-    int[] nums1 = new int[]{1};
-    int[] nums2 = new int[]{};
-    merge2(nums1, 1, nums2, 0);
-    assertArrayEquals(new int[]{1}, nums1);
-  }
-
-  @Test
-  public void testWithZeroValue() {
-    //nums1 = [0], m = 0, nums2 = [1], n = 1
-    int[] nums1 = new int[]{0};
-    int[] nums2 = new int[]{1};
-    merge2(nums1, 0, nums2, 1);
-    assertArrayEquals(new int[]{1}, nums1);
   }
 
   //first pass, complex
