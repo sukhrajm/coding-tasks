@@ -14,28 +14,40 @@ public class MergeSortedArray88 {
       return;
     }
     if (m == 0) {
-      for (int i=0; i<=nums2.length-1; i++) {
-        nums1[i] = nums2[i];
-      }
+      System.arraycopy(nums2, 0, nums1, 0, nums2.length - 1 + 1);
+      return;
     }
     int fillCounter = nums1.length - 1;
-    int num2Counter = n-1;
     int num1Counter = m-1;
-    for (int i = m-1; i>=0; i--) {
+    for (int num2Counter = n-1; num2Counter>=0; num2Counter--) {
       int nums1Current = nums1[num1Counter];
       int nums2Current = nums2[num2Counter];
 
       if (nums1Current < nums2Current) {
         nums1[fillCounter] = nums2Current;
         fillCounter--;
-        num2Counter--;
       }
+
       if (nums1Current > nums2Current) {
         nums1[fillCounter] = nums1[num1Counter];
         nums1[num1Counter] = nums2Current;
+        fillCounter--;
+        if (nums1Current != 0) {
+          num1Counter--;
+        }
       }
     }
 
+  }
+
+  @Test
+  public void test() {
+    int[] nums1 = new int[]{4,5,6,0,0,0};
+    int m = 3;
+    int[] nums2 = new int[]{1,2,3};
+    int n = 3;
+    merge2(nums1, m, nums2, n);
+    assertArrayEquals(new int[]{1,2,3,4,5,6}, nums1);
   }
 
   @Test
