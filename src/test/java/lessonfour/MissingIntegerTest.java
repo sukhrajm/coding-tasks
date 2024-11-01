@@ -3,6 +3,7 @@ package lessonfour;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class MissingIntegerTest {
   public int solution(int[] A) {
 
     HashSet<Integer> numbers = new HashSet<>();
-
+    HashMap m = new HashMap(32, 2);
     //make a list starting from 1 to the length + 1
     for (int i =1; i<=A.length+1; i++) {
       numbers.add(Integer.valueOf(i));
